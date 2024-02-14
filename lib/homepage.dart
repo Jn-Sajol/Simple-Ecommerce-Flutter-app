@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/global_shop_data.dart';
+import 'package:ecommerce_app/product_card.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -103,25 +104,10 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (context, index) {
                     final product = products[index];
                     // return print(product);
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        alignment: Alignment.center,
-                        width: double.infinity,
-                        // height: 400,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(34),
-                            color: Colors.brown,
-
-                          ),
-                        child:Column(
-                          children: [
-                            Text('product name: ${product['title']}'),
-                            Text('product price : ${product['price']}'),
-                            Image(image:NetworkImage(product['imageUrl']as String,),height: 200,),
-                          ],
-                        )
-                      ),
+                    return ProductCard(
+                      productName: product['title'].toString(),
+                      productPrice: product['price'].toString(),
+                      image: product['imageUrl'] as String,
                     );
                   },
                 ),
