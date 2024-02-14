@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/global_shop_data.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -84,6 +85,19 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     );
+                    },
+                ),
+              ),
+              //Main Products segment
+              Expanded(
+                child: ListView.builder(
+                  itemCount: products.length,
+                    itemBuilder: (context,index){
+                    final product = products[index];
+                    // return print(product);
+                      return Chip(
+                        label: Text(product['title'].toString()),
+                      );
                     },
                 ),
               )
