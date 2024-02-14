@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
+class HomePage extends StatefulWidget {
+ const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final List<String> filters = ['all', 'nike', 'adidas', 'lotto','bata','walker'];
-
+   late var initialState = 0;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.all(12),
+        padding:const EdgeInsets.all(12),
         child: Scaffold(
           body: Column(
             children: [
@@ -57,18 +62,26 @@ class HomePage extends StatelessWidget {
                     itemBuilder:(context,index){
                     final filter = filters[index];
                     // print(filter);
-                    return  Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Chip(
-                        label: Text(filter),
-                        backgroundColor: Colors.black26,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          side: BorderSide(
-                            color: Colors.green,
+                    return  GestureDetector(
+                      onTap: (){
+                        setState(() {
+                          initialState = index;
+                        });
+                        // print(filter);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Chip(
+                          label: Text(filter),
+                          backgroundColor: initialState == index ?Colors.amberAccent:Colors.black26,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: const BorderSide(
+                              color: Colors.green,
+                            )
                           )
-                        )
-                        // elevation: 2,
+                          // elevation: 2,
+                        ),
                       ),
                     );
                     },
