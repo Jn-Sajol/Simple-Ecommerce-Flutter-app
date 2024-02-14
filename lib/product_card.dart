@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatefulWidget {
   final String productName;
   final String productPrice;
   final String image;
@@ -8,6 +8,11 @@ class ProductCard extends StatelessWidget {
   const ProductCard(
       {super.key, required this.productName, required this.productPrice, required this.image});
 
+  @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,10 +33,10 @@ class ProductCard extends StatelessWidget {
             //      alignment = Alignment.center,
             //     child: Text('product name: ${product['title']}'),
             // )
-            Text(productName),
-            Text(productPrice),
+            Text(widget.productName),
+            Text(widget.productPrice),
             SizedBox(height: 12,),
-            Image(image: NetworkImage(image), height: 175,),
+            Image(image: NetworkImage(widget.image), height: 175,),
           ],
         )
     );
