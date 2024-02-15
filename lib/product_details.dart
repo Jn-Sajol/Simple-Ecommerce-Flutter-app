@@ -1,7 +1,9 @@
 import 'package:ecommerce_app/global_shop_data.dart';
 import 'package:flutter/material.dart';
+
 class ProductDetails extends StatefulWidget {
-   const ProductDetails({super.key});
+  const ProductDetails({super.key,  required this.product });
+  final Map<String, Object> product;
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
@@ -9,85 +11,84 @@ class ProductDetails extends StatefulWidget {
 
 class _ProductDetailsState extends State<ProductDetails> {
   // final String productImage = products[0]['imageUrl'];
-   final List<String> size = ['23','45','32','53','34'];
+  // final List<String> size = ['23', '45', '32', '53', '34'];
 
-   var initialValue = 0;
+  var initialValue = 0;
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        actions: [
-          Align(
-            alignment: Alignment.topLeft,
-            child: IconButton(
-                onPressed: (){},
-                icon: Icon(Icons.keyboard_return_outlined)),
-          )
-        ],
-        title:const Text('Product Details'),
+        title: const Text('Product Details'),
         centerTitle: true,
       ),
       body: Center(
         child: Column(
           children: [
-           const  Text('Product Name'),
-            // Image(image: AssetImage(products[0]['imageUrl'].toString())),
-            Spacer(flex: 2,),
+             Text(widget.product['title'].toString()),
+            Image(image: AssetImage(widget.product['imageUrl'].toString())),
+            Spacer(
+              flex: 2,
+            ),
 
             //footer
             Container(
               height: 250,
               width: double.infinity,
-              padding:const  EdgeInsets.all(22),
+              padding: const EdgeInsets.all(22),
               decoration: const BoxDecoration(
                 color: Colors.green,
               ),
               child: Column(
                 children: [
-                  const Text('Price',style: TextStyle(fontSize: 22),),
+                   Text(
+                    widget.product['price'].toString(),
+                    style: TextStyle(fontSize: 22),
+                  ),
                   // const SizedBox(height: 12,),
                   Expanded(
                     child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: size.length,
-                        itemBuilder: (context,index){
-                        var sise = size[index];
-                        return
-                        GestureDetector(
-                          child: Padding(
-                            padding: const EdgeInsets.all(6.0),
-                            child: Chip(
-                              // labelPadding: EdgeInsets.all(11),
-                              backgroundColor: initialValue == index ? Colors.amberAccent:Colors.green,
-                              label: Text(sise),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: widget.product.length,
+                        itemBuilder: (context, index) {
+                          var sise = widget.product[index];
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                initialValue = index;
+                              });
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(6.0),
+                              child: Chip(
+                                // labelPadding: EdgeInsets.all(11),
+                                backgroundColor: initialValue == index
+                                    ? Colors.amberAccent
+                                    : Colors.green,
+                                label: Text(sise.toString()),
+                              ),
                             ),
-                          ),
-                          onTap: (){
-                            setState((){
-                              initialValue = index;
-                            });
-                          },
-
-                        );
-                        }
-                    ),
+                          );
+                        }),
                   ),
                   // const SizedBox(height: 13,),
                   ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(double.infinity, 50)
-                      ),
-                      onPressed: (){
-                      },
-                      child: Text('Add to Cart'),
+                    style: ElevatedButton.styleFrom(
+                        minimumSize: Size(double.infinity, 50)),
+                    onPressed: () {},
+                    child:const  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.card_travel),
+                        SizedBox(width: 9,),
+                        Text('Add TO CART'),
+                      ],
+                    )
                   )
                 ],
               ),
             )
-
           ],
-
         ),
       ),
     );

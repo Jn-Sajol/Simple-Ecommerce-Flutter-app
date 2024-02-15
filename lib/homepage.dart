@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/global_shop_data.dart';
 import 'package:ecommerce_app/product_card.dart';
+import 'package:ecommerce_app/product_details.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -104,10 +105,19 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (context, index) {
                     final product = products[index];
                     // return print(product);
-                    return ProductCard(
-                      productName: product['title'].toString(),
-                      productPrice: product['price'].toString(),
-                      image: product['imageUrl'] as String,
+                    return GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => ProductDetails(product:product),
+                          ),
+                        );
+                      },
+                      child: ProductCard(
+                        productName: product['title'].toString(),
+                        productPrice: product['price'].toString(),
+                        image: product['imageUrl'] as String,
+                      ),
                     );
                   },
                 ),
