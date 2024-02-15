@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -19,6 +18,8 @@ class _HomePageState extends State<HomePage> {
     'bata',
     'walker'
   ];
+
+  final List<String> buttombar = ['Home','Cart'];
   late var initialState = 0;
 
   @override
@@ -121,6 +122,12 @@ class _HomePageState extends State<HomePage> {
                     );
                   },
                 ),
+              ),
+              BottomNavigationBar(
+                  items: buttombar.map((e) => BottomNavigationBarItem(
+                    icon: Icon(Icons.home),
+                    label:'Home',
+                  )).toList()
               )
             ],
           ),

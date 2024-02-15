@@ -49,9 +49,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                   Expanded(
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: widget.product.length,
+                        // itemCount: widget.product['sizes'] != null ? widget.product['sizes'].length : 0,
+                        // itemCount: (widget.product['sizes'] ?? []).length,
+                        itemCount: (widget.product['sizes'] as List<dynamic>?)?.length ?? 0,
                         itemBuilder: (context, index) {
-                          var sise = widget.product[index];
+                          // var sizes = widget.product['sizes'];
+                          var size;
+                            final List<dynamic>? sizes = widget.product['sizes'] as List<dynamic>?;
+                            if (sizes != null && index >= 0 && index < sizes.length) {
+                              size[index];
+                            }
                           return GestureDetector(
                             onTap: () {
                               setState(() {
@@ -65,7 +72,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 backgroundColor: initialValue == index
                                     ? Colors.amberAccent
                                     : Colors.green,
-                                label: Text(sise.toString()),
+                                label: Text(size.toString()),
                               ),
                             ),
                           );
