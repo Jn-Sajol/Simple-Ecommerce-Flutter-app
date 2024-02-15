@@ -23,79 +23,83 @@ class _ProductDetailsState extends State<ProductDetails> {
         centerTitle: true,
       ),
       body: Center(
-        child: Column(
-          children: [
-             Text(widget.product['title'].toString()),
-            Image(image: AssetImage(widget.product['imageUrl'].toString())),
-            Spacer(
-              flex: 2,
-            ),
+        child: Padding(
+          padding: const EdgeInsets.all(23.0),
+          child: Column(
+            children: [
+               Text(widget.product['title'].toString()),
+              SizedBox(height: 55,),
+              Image(image: AssetImage(widget.product['imageUrl'].toString())),
+              Spacer(
+                flex: 1,
+              ),
 
-            //footer
-            Container(
-              height: 250,
-              width: double.infinity,
-              padding: const EdgeInsets.all(22),
-              decoration: const BoxDecoration(
-                color: Colors.green,
-              ),
-              child: Column(
-                children: [
-                   Text(
-                    widget.product['price'].toString(),
-                    style: TextStyle(fontSize: 22),
-                  ),
-                  // const SizedBox(height: 12,),
-                  Expanded(
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        // itemCount: widget.product['sizes'] != null ? widget.product['sizes'].length : 0,
-                        // itemCount: (widget.product['sizes'] ?? []).length,
-                        itemCount: (widget.product['sizes'] as List<dynamic>?)?.length ?? 0,
-                        itemBuilder: (context, index) {
-                          // var sizes = widget.product['sizes'];
-                          var size;
-                            final List<dynamic>? sizes = widget.product['sizes'] as List<dynamic>?;
-                            if (sizes != null && index >= 0 && index < sizes.length) {
-                              size= sizes[index];
-                            }
-                          return GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                initialValue = index;
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(6.0),
-                              child: Chip(
-                                // labelPadding: EdgeInsets.all(11),
-                                backgroundColor: initialValue == index
-                                    ? Colors.amberAccent
-                                    : Colors.green,
-                                label: Text(size.toString()),
+              //footer
+              Container(
+                height: 250,
+                width: double.infinity,
+                padding: const EdgeInsets.all(22),
+                decoration: const BoxDecoration(
+                  color: Colors.green,
+                ),
+                child: Column(
+                  children: [
+                     Text(
+                      widget.product['price'].toString(),
+                      style: TextStyle(fontSize: 22),
+                    ),
+                    // const SizedBox(height: 12,),
+                    Expanded(
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          // itemCount: widget.product['sizes'] != null ? widget.product['sizes'].length : 0,
+                          // itemCount: (widget.product['sizes'] ?? []).length,
+                          itemCount: (widget.product['sizes'] as List<dynamic>?)?.length ?? 0,
+                          itemBuilder: (context, index) {
+                            // var sizes = widget.product['sizes'];
+                            var size;
+                              final List<dynamic>? sizes = widget.product['sizes'] as List<dynamic>?;
+                              if (sizes != null && index >= 0 && index < sizes.length) {
+                                size= sizes[index];
+                              }
+                            return GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  initialValue = index;
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(6.0),
+                                child: Chip(
+                                  // labelPadding: EdgeInsets.all(11),
+                                  backgroundColor: initialValue == index
+                                      ? Colors.amberAccent
+                                      : Colors.green,
+                                  label: Text(size.toString()),
+                                ),
                               ),
-                            ),
-                          );
-                        }),
-                  ),
-                  // const SizedBox(height: 13,),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: Size(double.infinity, 50)),
-                    onPressed: () {},
-                    child:const  Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.card_travel),
-                        SizedBox(width: 9,),
-                        Text('Add TO CART'),
-                      ],
+                            );
+                          }),
+                    ),
+                    // const SizedBox(height: 13,),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          minimumSize: Size(double.infinity, 50)),
+                      onPressed: () {},
+                      child:const  Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.card_travel),
+                          SizedBox(width: 9,),
+                          Text('Add TO CART'),
+                        ],
+                      )
                     )
-                  )
-                ],
-              ),
-            )
-          ],
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

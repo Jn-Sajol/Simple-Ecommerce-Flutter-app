@@ -123,12 +123,6 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
               ),
-              BottomNavigationBar(
-                  items: buttombar.map((e) => BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
-                    label:'Home',
-                  )).toList()
-              )
             ],
           ),
         ),
