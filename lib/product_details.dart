@@ -1,9 +1,17 @@
 import 'package:ecommerce_app/global_shop_data.dart';
 import 'package:flutter/material.dart';
-class ProductDetails extends StatelessWidget {
-  const ProductDetails({super.key});
+class ProductDetails extends StatefulWidget {
+   const ProductDetails({super.key});
 
+  @override
+  State<ProductDetails> createState() => _ProductDetailsState();
+}
+
+class _ProductDetailsState extends State<ProductDetails> {
   // final String productImage = products[0]['imageUrl'];
+   final List<String> size = ['23','45','32','53','34'];
+
+   var initialValue = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,26 +31,55 @@ class ProductDetails extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Text('Product Name'),
+           const  Text('Product Name'),
             // Image(image: AssetImage(products[0]['imageUrl'].toString())),
             Spacer(flex: 2,),
 
             //footer
             Container(
-              height: 200,
+              height: 250,
               width: double.infinity,
-              padding: EdgeInsets.all(33),
-              decoration: BoxDecoration(
+              padding:const  EdgeInsets.all(22),
+              decoration: const BoxDecoration(
                 color: Colors.green,
               ),
               child: Column(
                 children: [
-                  Text('Price'),
-                  SizedBox(height: 22,),
-                  Text('Size'),
-                  SizedBox(height: 33,),
+                  const Text('Price',style: TextStyle(fontSize: 22),),
+                  // const SizedBox(height: 12,),
+                  Expanded(
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: size.length,
+                        itemBuilder: (context,index){
+                        var sise = size[index];
+                        return
+                        GestureDetector(
+                          child: Padding(
+                            padding: const EdgeInsets.all(6.0),
+                            child: Chip(
+                              // labelPadding: EdgeInsets.all(11),
+                              backgroundColor: initialValue == index ? Colors.amberAccent:Colors.green,
+                              label: Text(sise),
+                            ),
+                          ),
+                          onTap: (){
+                            setState((){
+                              initialValue = index;
+                            });
+                          },
+
+                        );
+                        }
+                    ),
+                  ),
+                  // const SizedBox(height: 13,),
                   ElevatedButton(
-                      onPressed: (){},
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(double.infinity, 50)
+                      ),
+                      onPressed: (){
+                      },
                       child: Text('Add to Cart'),
                   )
                 ],
