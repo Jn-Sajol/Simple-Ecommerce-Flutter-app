@@ -57,7 +57,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           var size;
                             final List<dynamic>? sizes = widget.product['sizes'] as List<dynamic>?;
                             if (sizes != null && index >= 0 && index < sizes.length) {
-                              size[index];
+                              size= sizes[index];
                             }
                           return GestureDetector(
                             onTap: () {
