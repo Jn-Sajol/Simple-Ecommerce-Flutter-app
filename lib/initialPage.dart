@@ -15,7 +15,7 @@ class _InitialPageState extends State<InitialPage> {
   var curent = 0;
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body:  IndexedStack(
         index: curent,
         children:item,
@@ -28,11 +28,11 @@ class _InitialPageState extends State<InitialPage> {
            });
         },
         items: [
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
               icon: Icon(Icons.home),
             label: '',
           ),
-          BottomNavigationBarItem(
+         const  BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart),
             label: '',
           )
