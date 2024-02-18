@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
     'walker'
   ];
 
-  final List<String> buttombar = ['Home','Cart'];
+  final List<String> bottomBar = ['Home','Cart'];
   late var initialState = 0;
 
   @override

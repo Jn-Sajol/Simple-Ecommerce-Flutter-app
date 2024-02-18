@@ -1,6 +1,5 @@
 import 'package:ecommerce_app/cart.dart';
 import 'package:ecommerce_app/homepage.dart';
-import 'package:ecommerce_app/product_details.dart';
 import 'package:flutter/material.dart';
 
 class InitialPage  extends StatefulWidget {
@@ -12,27 +11,27 @@ class InitialPage  extends StatefulWidget {
 
 class _InitialPageState extends State<InitialPage> {
   List<Widget> item = const [HomePage(),Cart()];
-  var curent = 0;
+  var current = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body:  IndexedStack(
-        index: curent,
+        index: current,
         children:item,
       ),
       bottomNavigationBar: BottomNavigationBar(
-         currentIndex: curent,
+         currentIndex: current,
         onTap: (value){
            setState(() {
-             curent = value;
+             current = value;
            });
         },
-        items: [
-          const BottomNavigationBarItem(
+        items: const [
+           BottomNavigationBarItem(
               icon: Icon(Icons.home),
             label: '',
           ),
-         const  BottomNavigationBarItem(
+           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart),
             label: '',
           )
