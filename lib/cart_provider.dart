@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CartProvider  extends StatelessWidget {
-  const CartProvider ({super.key});
+class CartProvider extends ChangeNotifier {
+  void add() {}
 
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
+  void remove() {}
 }

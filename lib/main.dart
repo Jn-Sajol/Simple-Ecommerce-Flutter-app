@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/cart_provider.dart';
 import 'package:ecommerce_app/initialPage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
         home: ChangeNotifierProvider(
-          create: (context)=> Cart(),
+          create: (context)=> CartProvider(),
             child: InitialPage()
         ),
     );
