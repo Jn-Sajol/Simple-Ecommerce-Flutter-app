@@ -1,5 +1,7 @@
+import 'package:ecommerce_app/cart_provider.dart';
 import 'package:ecommerce_app/global_shop_data.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetails extends StatefulWidget {
   const ProductDetails({super.key,  required this.product });
@@ -12,11 +14,11 @@ class ProductDetails extends StatefulWidget {
 class _ProductDetailsState extends State<ProductDetails> {
   // final String productImage = products[0]['imageUrl'];
   // final List<String> size = ['23', '45', '32', '53', '34'];
-
   var initialValue = 0;
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Product Details'),
@@ -28,9 +30,9 @@ class _ProductDetailsState extends State<ProductDetails> {
           child: Column(
             children: [
                Text(widget.product['title'].toString()),
-              SizedBox(height: 55,),
+              const SizedBox(height: 55,),
               Image(image: AssetImage(widget.product['imageUrl'].toString())),
-              Spacer(
+              const Spacer(
                 flex: 1,
               ),
 
@@ -46,7 +48,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   children: [
                      Text(
                       widget.product['price'].toString(),
-                      style: TextStyle(fontSize: 22),
+                      style: const TextStyle(fontSize: 22),
                     ),
                     // const SizedBox(height: 12,),
                     Expanded(
@@ -84,8 +86,19 @@ class _ProductDetailsState extends State<ProductDetails> {
                     // const SizedBox(height: 13,),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          minimumSize: Size(double.infinity, 50)),
-                      onPressed: () {},
+                          minimumSize:const  Size(double.infinity, 50)),
+                      onPressed: () {
+                        cart.addItem(
+                          {
+                            'id':widget.product['id'],
+                            'title': widget.product['title'],
+                            'price': widget.product['price'],
+                            'imageUrl': widget.product['imageUrl'],
+                            'company': widget.product['company'],
+                            'sizes': widget.product['sizes'],
+                          }
+                        );
+                      },
                       child:const  Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
