@@ -18,7 +18,7 @@ class Cart extends StatelessWidget {
           return ListTile(
             leading: CircleAvatar(
               backgroundImage: AssetImage(item['imageUrl'].toString()),
-              // radius: 100,
+              radius: 30,
             ),
             title: Text(item['title'].toString()),
             subtitle:Text(item['company'].toString()),
