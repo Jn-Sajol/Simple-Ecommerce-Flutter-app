@@ -5,9 +5,10 @@ class Cart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Cart Page'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Text'),
+        centerTitle: true,
       ),
     );
   }
