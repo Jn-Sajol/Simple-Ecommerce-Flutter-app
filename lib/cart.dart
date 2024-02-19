@@ -27,7 +27,7 @@ class Cart extends StatelessWidget {
             subtitle:Text(item['company'].toString()),
             trailing: IconButton(
               onPressed: (){
-
+                items.removeItem(item);
               },
               icon:const  Icon(Icons.delete,color: Colors.red,),
             ),
