@@ -62,6 +62,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                       style: const TextStyle(fontSize: 22),
                     ),
                     // const SizedBox(height: 12,),
+                    const Align(
+                      alignment: Alignment.topLeft,
+                        child: Text('Sizes are ❕')
+                    ),
                     Expanded(
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
