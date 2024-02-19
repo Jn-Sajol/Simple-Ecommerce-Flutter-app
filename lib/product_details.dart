@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/cart.dart';
 import 'package:ecommerce_app/cart_provider.dart';
 import 'package:ecommerce_app/global_shop_data.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class ProductDetails extends StatefulWidget {
 class _ProductDetailsState extends State<ProductDetails> {
   // final String productImage = products[0]['imageUrl'];
   // final List<String> size = ['23', '45', '32', '53', '34'];
-  var initialValue = 0;
+  int ? initialSize = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,16 @@ class _ProductDetailsState extends State<ProductDetails> {
       appBar: AppBar(
         title: const Text('Product Details'),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: (){
+                Navigator.of(context).push(
+                 MaterialPageRoute(builder: (context)=>const  Cart() )
+               );
+              },
+              icon:const  Icon(Icons.shopping_cart),
+          )
+        ],
       ),
       body: Center(
         child: Padding(
@@ -67,14 +78,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                             return GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  initialValue = index;
+                                  initialSize = size;
                                 });
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(6.0),
                                 child: Chip(
                                   // labelPadding: EdgeInsets.all(11),
-                                  backgroundColor: initialValue == index
+                                  backgroundColor: initialSize == size
                                       ? Colors.amberAccent
                                       : Colors.green,
                                   label: Text(size.toString()),
@@ -88,16 +99,24 @@ class _ProductDetailsState extends State<ProductDetails> {
                       style: ElevatedButton.styleFrom(
                           minimumSize:const  Size(double.infinity, 50)),
                       onPressed: () {
-                        cart.addItem(
-                          {
-                            'id':widget.product['id'],
-                            'title': widget.product['title'],
-                            'price': widget.product['price'],
-                            'imageUrl': widget.product['imageUrl'],
-                            'company': widget.product['company'],
-                            'sizes': widget.product['sizes'],
-                          }
-                        );
+                       if(initialSize != 0){
+                         cart.addItem(
+                             {
+                               'id':widget.product['id'],
+                               'title': widget.product['title'],
+                               'price': widget.product['price'],
+                               'imageUrl': widget.product['imageUrl'],
+                               'company': widget.product['company'],
+                               'sizes': initialSize,
+                             }
+                         );
+                       }else{
+                         ScaffoldMessenger.of(context).showSnackBar(
+                            const  SnackBar(
+                               content: Text('PLease Select A Size'),
+                             )
+                         );
+                       }
                       },
                       child:const  Row(
                         mainAxisAlignment: MainAxisAlignment.center,
