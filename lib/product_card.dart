@@ -23,7 +23,7 @@ class _ProductCardState extends State<ProductCard> {
         // height: 400,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(34),
-          color: Color.fromRGBO(135, 235, 250, 100),
+          color: const Color.fromRGBO(135, 235, 250, 100),
 
         ),
         child: Column(
@@ -35,8 +35,8 @@ class _ProductCardState extends State<ProductCard> {
             // )
             Text(widget.productName),
             Text(widget.productPrice),
-            SizedBox(height: 12,),
-            Image(image: NetworkImage(widget.image), height: 175,),
+            const SizedBox(height: 12,),
+            Image(image: AssetImage(widget.image), height: 175,),
           ],
         )
     );

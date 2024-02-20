@@ -1,0 +1,5 @@
+{
+    "files.autoSave": "off",
+    "files.autoSaveDelay": 500,
+    "dart.hotReloadOnSave": "manual"
+}
